@@ -24,6 +24,7 @@ app.listen(port, function() {
   console.log("Listening on " + port);
 });
 
+/*
 app.dynamicHelpers({
   'host': function(req, res) {
     return req.headers['host'];
@@ -101,3 +102,4 @@ function handle_facebook_request(req, res) {
 
 app.get('/', handle_facebook_request);
 app.post('/', handle_facebook_request);
+*/
