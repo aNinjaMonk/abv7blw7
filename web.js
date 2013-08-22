@@ -23,7 +23,7 @@ var port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
-
+/*
 app.dynamicHelpers({
   'host': function(req, res) {
     return req.headers['host'];
@@ -98,6 +98,10 @@ function handle_facebook_request(req, res) {
     render_page(req, res);
   }
 }
-
-app.get('/', handle_facebook_request);
-app.post('/', handle_facebook_request);
+*/
+function Output(req,res)
+{
+	res.send("hello!");	
+}
+app.get('/',Output );
+app.post('/', Output);
