@@ -9,12 +9,12 @@ var app = express.createServer(
   express.bodyParser(),
   express.cookieParser(),
   // set this to a secret value to encrypt session cookies
-  express.session({ secret: process.env.SESSION_SECRET || 'secret123' }),
-  require('faceplate').middleware({
+  express.session({ secret: process.env.SESSION_SECRET || 'secret123' })
+  /*require('faceplate').middleware({
     app_id: process.env.FACEBOOK_APP_ID,
     secret: process.env.FACEBOOK_SECRET,
     scope:  'user_likes,user_photos,user_photo_video_tags'
-  })
+  })*/
 );
 
 // listen to the PORT given to us in the environment
@@ -98,10 +98,29 @@ function handle_facebook_request(req, res) {
     render_page(req, res);
   }
 }
+
+
+function render_page(req, res) {
+  req.facebook.app(function(err, app) {
+    req.facebook.me(function(user) {
+      res.render('index.ejs', {
+        layout:    false,
+        req:       req,
+        app:       app,
+        user:      user
+      });
+    });
+  });
+}
 */
 function Output(req,res)
 {
-	res.send("hello!");	
+	res.render('index.ejs', {
+        layout:    false,
+        req:       req,
+        app:       app
+      });
+	  //res.send("hello!");	
 }
 app.get('/',Output );
 app.post('/', Output);
