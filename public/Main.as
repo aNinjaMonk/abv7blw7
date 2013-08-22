@@ -55,7 +55,7 @@
 		}
 		private function InitGame()
 		{
-			gameOver = false;
+			/*gameOver = false;
 			generateField();
 			initTetriminoes();
 			//nextTetromino=Math.floor(Math.random()*7);
@@ -71,7 +71,7 @@
 			startTime = getTimer();
 			timer = new Timer(1000);
 			timer.addEventListener(TimerEvent.TIMER,showClock);
-			timer.start();
+			timer.start();*/
 			//PlayerWorld();
 		}/*
 		private function PlayerWorld():void
@@ -483,4 +483,5 @@
 			addChild(target);
 		}
 	}	*/
+}
 }
