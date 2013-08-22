@@ -5,3 +5,19 @@ body
 	border: 0px;
 	background:#FFFFFF;
 }
+#player1,#player2,#spacer
+{
+	display:inline-block;
+}
+#player1
+{
+	text-align: left;
+}
+#player2
+{
+	text-align: right;
+}
+#spacer
+{
+	width:770px;
+}
