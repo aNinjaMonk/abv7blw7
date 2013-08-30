@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
 
     <title><%= app.name %></title>
-    <link rel="stylesheet" href="stylesheets/screen.css" media="Screen" type="text/css" />
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />	
-	
+    <!--<link rel="stylesheet" href="stylesheets/screen.css" media="Screen" type="text/css" />
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />	-->
+	<link rel="stylesheet" href="css/main.css" media="Screen" type="text/css" />
     <!--[if IEMobile]>
-    <link rel="stylesheet" href="mobile.css" media="screen" type="text/css"  />
+    <!--<link rel="stylesheet" href="mobile.css" media="screen" type="text/css"  />-->
     <![endif]-->
 
     <!-- These are Open Graph tags.  They add meta data to your  -->
@@ -25,20 +25,22 @@
         }
       }
     </script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+	<script type="text/javascript" src="js/swfobject.js"></script>
+	<script src="js/main.js"></script>
   </head>
   <body>
 	<div id="fb-root"></div>
-	<script>
+	<script>	
 	  window.fbAsyncInit = function() {
 		// init the FB JS SDK
 		FB.init({
-		  appId      : '396996490402147',                        // App ID from the app dashboard
+		  appId      : '399235116842918',                        // App ID from the app dashboard
 		  channelUrl : 'channel.html', // Channel file for x-domain comms
 		  status     : true,                                 // Check Facebook Login status
 		  xfbml      : true                                  // Look for social plugins on the page
 		});
 		LoginStatus();
-		//GetFBInfo();
 		// Additional initialization code such as adding Event Listeners goes here
 	  };
 
@@ -55,24 +57,21 @@
 		<div class="profilepic"><img src="http://placehold.it/60X60"></img></div>
 		<div class="profilename">Player 1</div>
 	  </div>
-	  <div id="spacer"></div>
+	  <!--<div id="spacer"></div>
 	  <div id="player2">
 		<div class="profilepic"><img src="http://placehold.it/60X60"></img></div>
 		<div class="profilename">Player 2</div>
-	  </div>
+	  </div>-->
 		<div id="myContent">
 			<h1>Loading . . .</h1>
 				<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
 		</div>
-		<button onclick="javascript:PublishToWall();">Publish to Wall</button>
-		<button onclick="javascript:AddFriend();">Add a friend</button>
-		<button onclick="javascript:SendMessage();">Send Message</button>	
-		
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
-		<script type="text/javascript" src="js/swfobject.js"></script>
-		<script type="text/javascript" src="js/vendor/AppWarpClientSDK.js"></script>
-		<script src="js/main.js"></script>
-		<script src="js/multiplayer.js"></script>
+		<br>
+		<br>
+		<br>
+		<button onclick="javascript:PublishToWall();" class="btn-orange" style="width:180px;">Share With World</button>		
+		<button onclick="javascript:SendMessage();" class="btn-orange" style="width:150px;">Tell Friends</button>
+		<button onclick="javascript:AddFriend();" class="btn-orange" style="width:150px;">Add a friend</button>
 		
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -83,4 +82,3 @@
         </script>
   </body>
 </html>
-

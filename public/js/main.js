@@ -1,15 +1,3 @@
-
-	
-	/*FB.login(function(response) {
-		if (response.authResponse) {				
-			
-		}
-	});
-	/*
-	$("#login").click(function(event){		
-		GetFBInfo();
-	});
-	*/	
 	function LoginStatus(){
 		FB.getLoginStatus(function(response) {
 		  if (response.status === 'connected') {
@@ -28,6 +16,7 @@
 			// and signed request each expire
 			var uid = response.authResponse.userID;
 			var accessToken = response.authResponse.accessToken;
+			GetFBInfo();
 		  } else if (response.status === 'not_authorized') {
 			// the user is logged in to Facebook, 
 			// but has not authenticated your app
@@ -44,7 +33,7 @@
 			});
 		  }
 		});
-	}	
+	}
 	function GetFBInfo()
 	   {
 			FB.login(function(response) {
@@ -52,10 +41,7 @@
 					FB.api('/me', function(response) {
 							$('#player1 .profilepic').html('<img src="http://graph.facebook.com/'+response.id+'/picture">');
 							$('#player1 .profilename').html(response.name);
-						});
-					FB.api('/me?fields=friends', function(response) {
-							alert(response.friends.data[0].id);
-						});
+						});					
 				}
 				else
 				{
