@@ -17,6 +17,10 @@ body
 {
 	text-align: right;
 }
+#player1 .profilepic, #player1 .profilename
+{
+	display:inline-block;
+}
 #spacer
 {
 	width:770px;
