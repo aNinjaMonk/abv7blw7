@@ -36,17 +36,9 @@
 	}
 	function GetFBInfo()
 	   {
-			FB.login(function(response) {
-				if (response.authResponse) {
-					FB.api('/me', function(response) {
+			FB.api('/me', function(response) {
 							$('#player1 .profilepic').html('<img src="http://graph.facebook.com/'+response.id+'/picture">');
 							$('#player1 .profilename').html(response.name);
-						});					
-				}
-				else
-				{
-					alert('user cancelled login');
-				}
 			});
 	   }
 	   function PublishToWall()
