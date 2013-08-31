@@ -88,6 +88,7 @@
 			  link: 'www.fundooz.in'
 			});
 	   }
+	   document.domain = "facebook.com";
 	   var socket = io.connect('http://localhost:3000');
 	   socket.on('connect',function(){
 			socket.emit('adduser',prompt("What's your name?"));

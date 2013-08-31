@@ -12,6 +12,7 @@ var app = express.createServer(
   
 );
 
+//Chat Module
 var io = require('socket.io').listen(app);
 
 var usernames = {};
@@ -45,6 +46,8 @@ io.sockets.on('connection',function(socket){
 		socket.leave(socket.room);
 	});
 });
+
+
 // listen to the PORT given to us in the environment
 var port = process.env.PORT || 3000;
 
