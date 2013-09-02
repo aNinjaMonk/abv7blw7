@@ -1,19 +1,37 @@
 var async   = require('async');
 var express = require('express');
 var util    = require('util');
+var fs      = require('fs');
+var ejs 	= require('ejs');
+ejs.open = '<%';
+ejs.close = '%>';
 
 // create an express webserver
 var app = express.createServer(
   express.logger(),
   express.static(__dirname + '/public'),
   express.bodyParser(),
-  express.cookieParser(),  
+  express.cookieParser(),
   express.session({ secret: process.env.SESSION_SECRET || 'secret123' })
-  
 );
 
-//Chat Module
+app.configure(function(){
+	app.set('title','Above 7 Below 7');
+});
+
+/*
 var io = require('socket.io').listen(app);
+io.sockets.on("connection",function(socket){
+	socket.emit('news',{hello:'world'});
+	socket.on('message',function(data){
+		console.log(data.my);
+	});
+});
+*/
+//var rooms = {};
+
+/*
+//Chat Module
 
 var usernames = {};
 var rooms = ['room1','room2','room3'];
@@ -46,7 +64,12 @@ io.sockets.on('connection',function(socket){
 		socket.leave(socket.room);
 	});
 });
-
+*/
+/*
+fs.stat('public/abhi1.txt',function(err,stats){
+	console.log("stats:" + JSON.stringify(stats));
+});
+*/
 
 // listen to the PORT given to us in the environment
 var port = process.env.PORT || 3000;
@@ -54,13 +77,42 @@ var port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
+
 function Output(req,res)
 {
-	res.render('index.ejs', {
-        layout:    false,
-        req:       req,
-        app:       app
-      });
+	fs.readFile('public/abhi.txt',function(err,data){
+		if(err) throw err;
+		var title = "Above 7 Below 7";
+		var coin = 1000;
+		res.render('index.ejs',{
+			layout:    false,
+			req:       req,
+			app:       app,
+			title:     title,
+			myData:    data,
+			coins: 	   coin
+		});
+	});
+	
+	
 }
 app.get('/',Output );
 app.post('/', Output);
+
+app.post('/server',function(req,res){
+	res.send('server says hi!!');
+});
+app.get('/howtoplay',function(req,res){
+	res.send('This contains information about how to play!!');
+});
+app.get('/leaderboard',function(req,res){
+	res.send('leaderboard');
+});
+app.get('/shop',function(req,res){
+	res.send('shop');
+});
+/*
+app.use(function(err,req,res,next){
+	console.log(err.stack);
+	res.send(500,'Something broke');
+});*/

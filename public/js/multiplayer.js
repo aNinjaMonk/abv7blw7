@@ -9,9 +9,21 @@
       WarpClient.addNotificationListener(new MyNotificationListener());
 	
 	  WarpClient.connect();
+	  WarpClient.joinZone("abhijeet");
+	  WarpClient.joinRoom(1);
+	  WarpClient.subscribeRoom(1);
+	  //alert(WarpClient.getOnlineUsers());
+	  
+	  var msg = {
+		action = 'move',
+		pos_x: 120,
+		pos_y: 120
+	  };
+	  WarpClient.sendChat(JSON.stringify(msg));
 	  
       function MyConnectionRequestListener() {
               this.onConnectDone = function(result){
+					
               };
 	
               this.onJoinZoneDone = function(result){

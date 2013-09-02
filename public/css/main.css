@@ -3,11 +3,19 @@ body
 	margin: 0px;
 	padding: 0px;
 	border: 0px;
-	background:#FFFFFF;
+	background: #a5e9ef; /* Old browsers */
+	background: -moz-linear-gradient(top, #a5e9ef 0%, #207cca 99%, #2989d8 100%, #7db9e8 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a5e9ef), color-stop(99%,#207cca), color-stop(100%,#2989d8), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #a5e9ef 0%,#207cca 99%,#2989d8 100%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #a5e9ef 0%,#207cca 99%,#2989d8 100%,#7db9e8 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #a5e9ef 0%,#207cca 99%,#2989d8 100%,#7db9e8 100%); /* IE10+ */
+	background: linear-gradient(to bottom, #a5e9ef 0%,#207cca 99%,#2989d8 100%,#7db9e8 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a5e9ef', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+	height: 800px;
 }
 #player1,#player2,#spacer
 {
-	display:inline-block;
+	/*display:inline-block;*/
 }
 #player1
 {
@@ -17,11 +25,191 @@ body
 {
 	text-align: right;
 }
-#player1 .profilepic, #player1 .profilename
+#player1 .profilepic, #player1 .profilename,#player1 .coins
 {
 	display:inline-block;
 }
 #spacer
 {
 	width:770px;
+}
+#game
+{
+	display:inline-block;
+	margin-left: 50px;
+	position:absolute;
+	top:70px;
+	width:70%;
+	height: 600px;
+	border: 10px solid #ffffff;
+	border-radius: 10px;
+	background: #7db9e8; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdkYjllOCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMmU3N2Y0IiBzdG9wLW9wYWNpdHk9IjEiLz4KICAgIDxzdG9wIG9mZnNldD0iNTMlIiBzdG9wLWNvbG9yPSIjYTVlOWVmIiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+	background: -moz-linear-gradient(top, #7db9e8 0%, #2e77f4 0%, #a5e9ef 53%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7db9e8), color-stop(0%,#2e77f4), color-stop(53%,#a5e9ef)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #7db9e8 0%,#2e77f4 0%,#a5e9ef 53%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #7db9e8 0%,#2e77f4 0%,#a5e9ef 53%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #7db9e8 0%,#2e77f4 0%,#a5e9ef 53%); /* IE10+ */
+	background: linear-gradient(to bottom, #7db9e8 0%,#2e77f4 0%,#a5e9ef 53%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#a5e9ef',GradientType=0 ); /* IE6-8 */
+}
+#right
+{
+	display:inline-block;
+	width:23%;	
+	position:absolute;
+	top: 70px;
+	right: 1%;
+	margin-left: 50px;	
+}
+#gamelobbies
+{
+	height: 400px;
+	border: 10px solid #ffffff;
+	border-radius: 10px;
+	background: rgba(255,255,255,0.85);
+}
+#banner
+{
+	margin-top: 10px;
+	height: 170px;
+	border: 10px solid #ffffff;
+	border-radius: 10px;
+	background: rgba(255,255,255,0.85);
+}
+#btn_play
+{
+	position:absolute;
+	right: 10px;
+	top:40px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #ffffff;
+	padding: 11px 22px;
+	background: -moz-linear-gradient(
+		top,
+		#91efff 0%,
+		#6acfca);
+	background: -webkit-gradient(
+		linear, left top, left bottom, 
+		from(#91efff),
+		to(#6acfca));
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	border: 0px solid #121414;
+	-moz-box-shadow:
+		0px 1px 3px rgba(5,5,5,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	-webkit-box-shadow:
+		0px 1px 3px rgba(5,5,5,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+	box-shadow:
+		0px 1px 3px rgba(5,5,5,0.5),
+		inset 0px 0px 2px rgba(255,255,255,1);
+}
+#btn_creatematch
+{
+	position:absolute;
+	right: 10px;
+	top:120px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #ffffff;
+	padding: 11px 14px;
+	background: rgba(0,0,0,0.5);
+	border:none;
+	border-radius: 5px;
+}
+#betdecision
+{
+	display:inline-block;
+	position:absolute;
+	right: 10px;
+	top:90px;
+}
+input[type="radio"]
+{
+	background: #000000;
+	color:#777777;
+	cursor:pointer;
+}
+#content
+{
+	height: 600px;
+}
+.ui-widget-content ,.ui-state-default,.ui-tabs-active,.ui-state-active,.ui-tabs-nav,.ui-tabs .ui-tabs-nav
+{
+	background:none;
+	border:none;
+	padding:0px;
+	margin:0px;
+}
+#tabs
+{
+	align-content:center;
+	text-align:center;
+	height: 100%;
+}
+#main
+{
+	height: 100%;
+}
+#tabs ul li
+{
+	width:23%;
+	
+	background:rgba(115,115,115,0.8);
+	border:none;
+	padding:0px;
+	border-radius:0px;
+	margin:5px;
+	font-size:10px;
+}
+#tabs ul li a
+{
+	color:#ffffff;
+	text-align:center;
+}
+#tabs ul li .ui-state-active, .ui-state-default, #tabs ul li[aria-selected="true"]
+{
+	background:rgba(0,0,0,0.5);
+}
+#friendmatch
+{	
+	position:absolute;
+	bottom:0px;
+	width: 100%;
+	height: 170px;
+	
+	background: rgba(0,0,0,0.3);
+}
+.ui-tabs .ui-tabs-panel 
+{
+	margin:0px;
+	padding:0px;
+}
+#topbanner
+{
+	position:absolute;
+	top:0px;
+	width: 100%;
+	height: 150px;	
+	background: rgba(0,0,0,0.3);
+}
+#hostname
+{
+	display:inline-block;
+}
+.player
+{
+	display:inline-block;
+	width:200px;
+	height:200px;
+	box-shadow:0px 0px 2px 2px #ffffff,
+			0px 0px 0px 40px rgba(0,0,0,0.4);
+			
+	margin: 130px 130px 0 110px;
+	
 }

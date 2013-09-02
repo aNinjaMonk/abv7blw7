@@ -1,14 +1,48 @@
+	
+	$(function(){
+		$("#tabs").tabs();		
+		$("#page2").css("display","none");
+		$("#page3").css("display","none");
+		$("#btn_play").click(function(event){
+			$("#page1").css("display","none");
+			$("#page2").css("display","");			
+		});
+		$("#btn_start").click(function(event){			
+			$("#page2").css("display","none");
+			$("#page3").css("display","");
+		});
+	});	
+	
+	function DrawBoard()
+	{
+		var c=document.getElementById("mygame");
+		var ctx=c.getContext("2d");
+		ctx.fillStyle="#FF0000";
+		ctx.fillRect(0,0,600,600);
+	}
+	function DrawPlayer()
+	{
+		
+	}
+	function movePlayer()
+	{
+		
+	}
+	// Fb Functions
 	function LoginStatus(){
 		FB.getLoginStatus(function(response) {
 		  if (response.status === 'connected') {
-			var flashvars = {};
+			
+			//no flash to be used. 
+			/*var flashvars = {};
 			var params = {
 				menu: "false",
 				scale: "default",
 				allowFullscreen: "true",
 				allowScriptAccess: "always"
 			};
-			swfobject.embedSWF("game.swf", "myContent", "100%", "600", "10.0.0", "expressInstall.swf",flashvars,params);
+			swfobject.embedSWF("game.swf", "myContent", "100%", "600", "10.0.0", "expressInstall.swf",flashvars,params);*/
+			
 			// the user is logged in and has authenticated your
 			// app, and response.authResponse supplies
 			// the user's ID, a valid access token, a signed
@@ -17,6 +51,7 @@
 			var uid = response.authResponse.userID;
 			var accessToken = response.authResponse.accessToken;
 			GetFBInfo();
+			
 		  } else if (response.status === 'not_authorized') {
 			// the user is logged in to Facebook, 
 			// but has not authenticated your app
@@ -79,9 +114,16 @@
 			  method: 'send',
 			  link: 'www.fundooz.in'
 			});
-	   }
-	   document.domain = "facebook.com";
-	   var socket = io.connect('http://localhost:3000');
+	   }	   
+	   
+	   var socket = io.connect("http://localhost:3000");
+	   socket.on('news',function(data){
+			alert(data.hello);			
+			//socket.emit('message',{my:'abhijeet goel'});
+	   });
+	   
+	   //chat
+	   /*var socket = io.connect('http://localhost:3000');
 	   socket.on('connect',function(){
 			socket.emit('adduser',prompt("What's your name?"));
 	   });
@@ -123,4 +165,4 @@
 					$('#datasend').focus().click();
 				}
 			});
-	   });
+	   });*/

@@ -4,9 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
 
-    <title><%= app.name %></title>
+    <title><%= title %></title>
     <!--<link rel="stylesheet" href="stylesheets/screen.css" media="Screen" type="text/css" />
     <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />	-->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	<link rel="stylesheet" href="css/main.css" media="Screen" type="text/css" />
     <!--[if IEMobile]>
     <!--<link rel="stylesheet" href="mobile.css" media="screen" type="text/css"  />-->
@@ -24,10 +25,15 @@
           console.log('The response was', response);
         }
       }
-    </script>
-	<script src="js/socket.io.js"></script>
+    </script>	
 	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+	<script src="js/socket.io.js"></script>
+	<script type="text/javascript" src="js/knockout-2.3.0.js"></script>
+	<script type="text/javascript" src="js/ejs.js"></script>
 	<script type="text/javascript" src="js/swfobject.js"></script>
+	<script src="js/vendor/AppWarpClientSDK.js"></script>
+	<script type="text/javascript" src="js/multiplayer.js"></script>
 	<script src="js/main.js"></script>
   </head>
   <body>
@@ -36,7 +42,7 @@
 	  window.fbAsyncInit = function() {
 		// init the FB JS SDK
 		FB.init({
-		  appId      : '399235116842918',                        // App ID from the app dashboard
+		  appId      : '396996490402147',                        // App ID from the app dashboard
 		  channelUrl : 'channel.html', // Channel file for x-domain comms
 		  status     : true,                                 // Check Facebook Login status
 		  xfbml      : true                                  // Look for social plugins on the page
@@ -54,15 +60,76 @@
 		 fjs.parentNode.insertBefore(js, fjs);
 	   }(document, 'script', 'facebook-jssdk'));
 	</script>
+	<div id="page1">
 	  <div id="player1">
 		<div class="profilepic"><img src="http://placehold.it/60X60"></img></div>
-		<div class="profilename">Player 1</div>
-	  </div>
+		<div class="profilename">Player 1</div>		
+		<div class="coins"><img src="img/coin.png"><%= coins %></div>
+	  </div>	  
+		  <div id="game">
+			<div id="tabs">
+			  <ul>
+				<li><a href="#main">MAIN</a></li>
+				<li><a href="/howtoplay">HOW TO PLAY</a></li>
+				<li><a href="/leaderboard">LEADERBOARD</a></li>
+				<li><a href="/shop">SHOP</a></li>
+			  </ul>
+			  <div id="main">
+				<img src="img/logo.png">
+				<input type="button" id="btn_play" value="PLAY NOW"><br>
+				<div id="betdecision">
+					<input type="radio" name="bet" value="yes" checked>BET</input>
+					<input type="radio" name="bet" value="no">NO BET</input><br>
+				</div>
+				<input type="button" id="btn_creatematch" value="CREATE MATCH">
+				<div id="friendmatch">
+				</div>
+			  </div>
+			  <div id="howto">				
+			  </div>
+			  <div id="leaderboard">				
+			  </div>
+			</div>				
+		  </div>
+		  <div id="right">
+			  <div id="gamelobbies">					
+			  </div>
+			  <div id="banner">					
+			  </div>
+		  </div>	  
+	</div>
+	<div id="page2">
+		<div id="game">
+			<div id="topbanner">WAITING TO PLAY FOURPLAY</div><br>
+			HOST: <div id="hostname"></div>			
+			<br><br><br><br><br><br>
+			<div class="player" id="play1"></div>
+			<div class="player" id="play2"></div>
+			<input type="button" id="btn_start" value="START MATCH"/>
+		</div>
+		<div id="right">
+			  <div id="gamelobbies">					
+			  </div>
+			  <div id="banner">					
+			  </div>
+		  </div>
+	</div>
+	<div id="page3">
+		<div id="game">
+			<canvas id="mygame" width="600" height="600" style="border:1px solid #000000;"></canvas>
+		</div>
+		<div id="right">
+			  <div id="gamelobbies">					
+			  </div>
+			  <div id="banner">					
+			  </div>
+		  </div>		
+	</div>
 	  <!--<div id="spacer"></div>
 	  <div id="player2">
 		<div class="profilepic"><img src="http://placehold.it/60X60"></img></div>
 		<div class="profilename">Player 2</div>
-	  </div>-->
+	  </div>
 		<div id="myContent">
 			<h1>Loading . . .</h1>
 				<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
@@ -76,11 +143,18 @@
 			<div id="conversation"></div>
 			<input id="data" style="width:200px;" />
 			<input type="button" id="datasend" value="send" />
-		</div>
+		</div>		
 		<button onclick="javascript:PublishToWall();" class="btn-orange" style="width:180px;">Share With World</button>		
 		<button onclick="javascript:SendMessage();" class="btn-orange" style="width:150px;">Tell Friends</button>
-		<button onclick="javascript:AddFriend();" class="btn-orange" style="width:150px;">Add a friend</button>
-		
+		<button onclick="javascript:AddFriend();" class="btn-orange" style="width:150px;">Add a friend</button>		
+		<table>
+		<form id="login" method="POST" action="/server">
+			<tr><td>Username:</td><td><input type="text" name="user"></td></tr>
+			<tr><td>Password:</td><td><input type="password" name="pass"></td></tr>
+			<tr><td><input type="submit" name="submit" value="Login"></td></tr>
+		</form>
+		</table>
+		<div><%= myData %></div>-->
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
