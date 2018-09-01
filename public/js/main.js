@@ -1,8 +1,11 @@
-	
+	var k,c,ctx,mySprite,spriteRotation=0;
+		
 	$(function(){
-		$("#tabs").tabs();		
-		$("#page2").css("display","none");
+		/*$("#tabs").tabs();		
+		$("#page2").css("display","");
 		$("#page3").css("display","none");
+		$("#page1").css("display","none");
+		
 		$("#btn_play").click(function(event){
 			$("#page1").css("display","none");
 			$("#page2").css("display","");			
@@ -10,38 +13,125 @@
 		$("#btn_start").click(function(event){			
 			$("#page2").css("display","none");
 			$("#page3").css("display","");
-		});
-	});	
-	
-	function DrawBoard()
-	{
-		var c=document.getElementById("mygame");
-		var ctx=c.getContext("2d");
-		ctx.fillStyle="#FF0000";
-		ctx.fillRect(0,0,600,600);
-	}
-	function DrawPlayer()
-	{
-		
-	}
-	function movePlayer()
-	{
-		
-	}
-	// Fb Functions
-	function LoginStatus(){
-		FB.getLoginStatus(function(response) {
-		  if (response.status === 'connected') {
-			
-			//no flash to be used. 
-			/*var flashvars = {};
+			//no flash to be used later.
+			*/
+			var flashvars = {};
 			var params = {
 				menu: "false",
 				scale: "default",
 				allowFullscreen: "true",
 				allowScriptAccess: "always"
 			};
-			swfobject.embedSWF("game.swf", "myContent", "100%", "600", "10.0.0", "expressInstall.swf",flashvars,params);*/
+			swfobject.embedSWF("game.swf", "myContent", "100%", "100%", "10.0.0", "expressInstall.swf",flashvars,params);			
+		//});
+	});
+	  
+	/*
+	var requestAnimFrame = (function(){
+		return window.requestAnimationFrame       ||
+			window.webkitRequestAnimationFrame ||
+			window.mozRequestAnimationFrame    ||
+			window.oRequestAnimationFrame      ||
+			window.msRequestAnimationFrame     ||
+			function(callback){
+				window.setTimeout(callback, 1000 / 60);
+			};
+	})();
+	
+	setInterval(update,1000);
+	
+	function init()
+	{
+	
+	}
+	function draw()
+	{
+		
+	}
+	function update()
+	{
+		CheckInput();		
+	}
+	
+	
+	var lastTime;
+	function main()
+	{	
+		var now = Date.now();
+		var dt = (now - lastTime) / 1000.0;
+		update(dt);
+		render();
+		lastTime = now;
+		requestAnimFrame(main);
+	}
+	
+	function initGame()
+	{
+		mySprite = loadSprite('../img/coin.png');
+	}
+	function updateScene(delta)
+	{
+		spriteRotation += (Math.PI/180.0) * 45 * delta;
+	}
+	function renderScene(delta)
+	{
+		ctx.clearRect(0,0,canvas.width,canvas.height);
+		
+		drawSprite(mySprite,100,100,0,1);
+		drawSprite(mySprite,200,100,0,2);
+		drawSprite(mySprite,300,100,spriteRotation,2);
+	}
+	function loadSprite(img)
+	{
+		var image = new Image();
+		image.src = img;
+		return image;
+	}
+	function drawSprite(img,x,y,rot,scale)
+	{
+		var w = img.width;
+		var h = img.height;
+		
+		ctx.save();
+		ctx.translate(x,y);
+		ctx.rotate(rot);
+		ctx.scale(scale,scale);
+		ctx.drawImage(img,0,0,w,h,-w/2,-h/2,w,h);
+		ctx.restore();
+	}
+	function DrawBoard()
+	{
+		c = document.getElementById("myCanvas");	
+		ctx=c.getContext("2d");
+		ctx.fillStyle= "#FFFFFF";
+		ctx.fillRect(0,0,600,600);
+	}
+	function DrawPlayer(x,y)
+	{
+		ctx.fillStyle= "#000000";
+		ctx.fillRect(x,y,10,10);
+	}
+	function CheckInput()
+	{
+		k.down('up', function() {
+		
+		  DrawPlayer(x,y);
+		});
+		k.down('down', function() {
+		  console.log('down arrow key pressed');
+		});
+		k.down('right', function() {
+		  console.log('right arrow key pressed');
+		});
+		k.down('left', function() {
+		  console.log('left arrow key pressed');
+		});
+	}
+	*/
+	// Fb Functions
+	function LoginStatus(){
+		FB.getLoginStatus(function(response) {
+		  if (response.status === 'connected') {
 			
 			// the user is logged in and has authenticated your
 			// app, and response.authResponse supplies
@@ -100,7 +190,7 @@
 	   {
 			FB.ui({
 			  method: 'friends',
-			  id: 'pankaj.karajagi'
+			  id: 'ankit.jain'
 			}, function(response){
 				if(response && response.post_id)					
 					alert('friend request sent');
@@ -114,13 +204,13 @@
 			  method: 'send',
 			  link: 'www.fundooz.in'
 			});
-	   }	   
+	   }
 	   
-	   var socket = io.connect("http://localhost:3000");
+	   /*var socket = io.connect("http://localhost:3000");
 	   socket.on('news',function(data){
-			alert(data.hello);			
+			//alert(data.hello);			
 			//socket.emit('message',{my:'abhijeet goel'});
-	   });
+	   });*/
 	   
 	   //chat
 	   /*var socket = io.connect('http://localhost:3000');
